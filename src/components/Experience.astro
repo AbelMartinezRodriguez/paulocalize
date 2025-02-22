@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import ExperienceItem from "./ExperienceItem.astro";
+
+const projects = await getCollection("projects");
+
+const projectsData = projects.map((project) => {
+  return {
+    title: project.data.title,
+    date: project.data.date,
+    description: project.data.description,
+    image: project.data.image,
+    link: project.data.link,
+  };
+});
+---
+
+<ol class="relative border-s border-gray-200 dark:border-gray-700">
+  {
+    projectsData
+      .sort(
+        (project1, project2) =>
+          Number(project1.date) > Number(project2.date) ? -1 : 1 //Sort from newest to oldest
+      )
+      .map((project) => <ExperienceItem {...project} />)
+  }
+</ol>

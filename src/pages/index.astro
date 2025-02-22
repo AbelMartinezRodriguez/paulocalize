@@ -1,0 +1,75 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Badge from "../components/Badge.astro";
+import LinkedIn from "../icons/LinkedIn.astro";
+import SocialIcon from "../components/SocialIcon.astro";
+import Mail from "../icons/Mail.astro";
+import Experience from "../components/Experience.astro";
+import Container from "../components/Container.astro";
+import Briefcase from "../icons/Briefcase.astro";
+import Projects from "../components/Projects.astro";
+
+const projects = await getCollection("projects");
+console.log(projects[0]);
+---
+
+<Layout
+  title="Paulocalize - Traductora y Localizadora EN/ES/GL"
+  description="Traductora y localizadora EN/ES/GL especializada en videojuegos, series, películas y cualquier servicio multimedia."
+>
+  <main>
+    <Container class="py-5">
+      <span class="flex gap-2">
+        <img
+          src="/src/assets/foto_cv.webp"
+          alt="logo photo"
+          class="size-24 rounded-full aspect"
+        />
+        <a
+          href="https://www.linkedin.com/in/paurf/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex justify-center items-center"
+        >
+          <Badge>Disponible para trabajar</Badge></a
+        >
+      </span>
+      <h1 class="lg:text-5xl text-2xl font-bold gap-2 pb-2">Hola! soy Paula</h1>
+      <h2 class="text-lg md:text-2xl lg:text-3xl text-wrap">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      </h2>
+      <nav class="flex flex-wrap gap-4 py-5">
+        <SocialIcon href="https://www.linkedin.com/in/paurf/">
+          <LinkedIn class="size-4 lg:size-6" />LinkedIn</SocialIcon
+        >
+        <SocialIcon href="mailto:paularf09@gmail.com">
+          <Mail class="size-4 lg:size-6" />Contáctame</SocialIcon
+        >
+      </nav>
+    </Container>
+
+    <Container id="proyectos">
+      <h2 class="text-3xl font-semibold gap-2 pb-2 flex gap-x-3 items-center">
+        <Briefcase class="size-8" />Experiencia Laboral
+      </h2>
+      <Experience />
+    </Container>
+
+    <Container>
+      <h2 class="text-3xl font-semibold gap-2 pb-2 flex gap-x-3 items-center">
+        <Briefcase class="size-8" />Proyectos
+      </h2>
+      <Projects />
+    </Container>
+  </main>
+</Layout>
+
+<style>
+  .aspect {
+    aspect-ratio: 4/5;
+  }
+</style>

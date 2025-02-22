@@ -1,0 +1,84 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import "./src/styles/global.css";
+import "@fontsource-variable/montserrat";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <div>
+      <Header />
+      <slot />
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body {
+    background-color: var(--color-gray-900);
+    color: #fff;
+    font-family: "Montserrat Variable", sans-serif;
+  }
+
+  body {
+    @apply grid place-content-center;
+    padding: 1rem;
+    min-height: 100vh;
+  }
+
+  body > div {
+    @apply container;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  @theme {
+    --color-gray-50: #fafafa;
+    --color-gray-100: #f5f5f5;
+    --color-gray-200: #ede8eb;
+    --color-gray-300: #e8dde3;
+    --color-gray-400: #e3cfd9;
+    --color-gray-500: #e1bdcf;
+    --color-gray-600: #bd8ea6;
+    --color-gray-700: #95657d;
+    --color-gray-800: #5b4852;
+    --color-gray-900: #2a2829;
+    --color-gray-950: #141414;
+  }
+  /* @theme {
+    --color-gray-400: #cf9eab;
+    --color-gray-500: #e1bdcf;
+    --color-gray-600: #b59eb1;
+    --color-gray-700: #8c8191;
+    --color-gray-800: #676470;
+    --color-gray-900: #47484f;
+    --color-gray-950: #2c2d2f;
+  } */
+</style>
